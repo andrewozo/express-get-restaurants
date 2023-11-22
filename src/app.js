@@ -48,7 +48,7 @@ app.put("/restaurants/:id", async (req, res, next) => {
     if (updated[0] === 0) {
       throw new Error("Update not completed");
     }
-    res.sendStatus(200);
+    res.sendStatus(200).json(updated);
   } catch (error) {
     next(error);
   }
