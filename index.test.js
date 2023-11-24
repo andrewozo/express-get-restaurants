@@ -1,8 +1,11 @@
 const request = require("supertest");
 const app = require("./src/app");
 const Restaurant = require("./models/Restaurant");
+const syncSeed = require("./seed");
 
-beforeEach(() => {});
+beforeEach(async () => {
+  await syncSeed();
+});
 
 describe("endpoint testing", () => {
   test("returns right status code", async () => {
@@ -31,9 +34,9 @@ describe("endpoint testing", () => {
   });
 
   test("/restaurants/:id returns correct data", async () => {
-    const response = await request(app).get("/restaurants/5");
+    const response = await request(app).get("/restaurants/1");
 
-    expect(response.body.name).toBe("Drews Bodega");
+    expect(response.body.name).toBe("AppleBees");
   });
 
   test("post request returns updated array", async () => {
